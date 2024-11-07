@@ -41,22 +41,12 @@
 #define HOSTAPD_CHAN_DFS_AVAILABLE 0x00000300
 #define HOSTAPD_CHAN_DFS_MASK 0x00000300
 
-#define HOSTAPD_CHAN_VHT_10_70 0x00000800
-#define HOSTAPD_CHAN_VHT_30_50 0x00001000
-#define HOSTAPD_CHAN_VHT_50_30 0x00002000
-#define HOSTAPD_CHAN_VHT_70_10 0x00004000
+#define HOSTAPD_CHAN_VHT_80MHZ_SUBCHANNEL 0x00000800
+#define HOSTAPD_CHAN_VHT_160MHZ_SUBCHANNEL 0x00001000
 
+#define HOSTAPD_CHAN_EHT_320MHZ_SUBCHANNEL 0x00002000
 #define HOSTAPD_CHAN_INDOOR_ONLY 0x00010000
 #define HOSTAPD_CHAN_GO_CONCURRENT 0x00020000
-
-#define HOSTAPD_CHAN_VHT_10_150 0x00100000
-#define HOSTAPD_CHAN_VHT_30_130 0x00200000
-#define HOSTAPD_CHAN_VHT_50_110 0x00400000
-#define HOSTAPD_CHAN_VHT_70_90  0x00800000
-#define HOSTAPD_CHAN_VHT_90_70  0x01000000
-#define HOSTAPD_CHAN_VHT_110_50 0x02000000
-#define HOSTAPD_CHAN_VHT_130_30 0x04000000
-#define HOSTAPD_CHAN_VHT_150_10 0x08000000
 
 /* Allowed bandwidth mask */
 enum hostapd_chan_width_attr {
@@ -2624,6 +2614,7 @@ struct beacon_data {
  * @counter_offset_beacon: Offset to the count field in beacon's tail
  * @counter_offset_presp: Offset to the count field in probe resp.
  * @punct_bitmap - Preamble puncturing bitmap
+ * @link_id: Link ID to determine the link for MLD; -1 for non-MLD
  */
 struct csa_settings {
 	u8 cs_count;
@@ -2637,6 +2628,7 @@ struct csa_settings {
 	u16 counter_offset_presp[2];
 
 	u16 punct_bitmap;
+	int link_id;
 };
 
 /**
